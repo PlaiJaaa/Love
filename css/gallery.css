@@ -1,0 +1,484 @@
+/* ==========================================
+   Gallery Page - หน้ารูปเรียงเป็นหัวใจ
+   ========================================== */
+
+.container {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* รูปหัวใจหลัก */
+.heart-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    perspective: 1000px;
+}
+
+.heart-shape {
+    position: relative;
+    width: 850px;
+    height: 800px;
+    animation: heart-float 4s ease-in-out infinite;
+}
+
+.heart-shape.pixel-heart {
+    display: grid;
+    grid-template-columns: repeat(11, 70px);
+    grid-template-rows: repeat(11, 70px);
+    gap: 5px;
+    width: auto;
+    height: auto;
+    justify-content: center;
+}
+
+@keyframes heart-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.pixel-heart .photo-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fefefa 0%, #f5f5f0 50%, #eeeee8 100%);
+    padding: 4px;
+    padding-bottom: 14px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    transform: rotate(0deg);
+    animation: photo-appear 0.5s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+    border: none;
+}
+
+/* ขนาดใหญ่ - 2x2 */
+.pixel-heart .photo-item.size-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* ขนาดกลาง - กว้าง 2 ช่อง */
+.pixel-heart .photo-item.size-wide {
+    grid-column: span 2;
+}
+
+/* ขนาดกลาง - สูง 2 ช่อง */
+.pixel-heart .photo-item.size-tall {
+    grid-row: span 2;
+}
+
+.photo-item {
+    position: absolute;
+    width: 75px;
+    height: 90px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fefefa 0%, #f5f5f0 50%, #eeeee8 100%);
+    padding: 4px;
+    padding-bottom: 15px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    transform: rotate(var(--rotate, 0deg));
+    animation: photo-appear 0.5s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+    border: none;
+}
+
+@keyframes photo-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(var(--rotate, 0deg));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(var(--rotate, 0deg));
+    }
+}
+
+.pixel-heart .photo-item:hover {
+    transform: scale(1.08) !important;
+    z-index: 100;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.photo-item:hover {
+    transform: scale(1.8) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.photo-item img {
+    width: 100%;
+    height: calc(100% - 11px);
+    object-fit: cover;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-item.tip-photo {
+    border: none;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 182, 193, 0.4);
+}
+
+/* Decorative Hearts */
+.deco-heart {
+    position: absolute;
+    font-size: 12px;
+    color: #8a2be2;
+    animation: heart-beat 1.5s ease-in-out infinite;
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+}
+
+.deco-heart:nth-child(odd) {
+    animation-delay: 0.5s;
+}
+
+@keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* ==========================================
+   Video Container - ตรงกลางหัวใจ
+   ========================================== */
+
+.pixel-heart .video-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    background: linear-gradient(180deg, #fefefa 0%, #f5f5f0 50%, #eeeee8 100%);
+    border-radius: 2px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pixel-heart .video-container video {
+    border: none;
+    background: transparent;
+    padding: 0;
+    border-radius: 2px;
+}
+
+.video-container {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    z-index: 50;
+    text-align: center;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 
+        0 0 30px rgba(138, 43, 226, 0.5),
+        0 0 60px rgba(75, 0, 130, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 4px solid rgba(138, 43, 226, 0.8);
+    background: linear-gradient(145deg, #1a1a3e, #0d0d20);
+    padding: 5px;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-overlay:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.video-overlay.hidden {
+    display: none;
+}
+
+.play-button {
+    width: 60px;
+    height: 60px;
+    background: rgba(138, 43, 226, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(75, 0, 130, 0.5);
+    transition: all 0.3s ease;
+    padding-left: 5px;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background: #9932cc;
+}
+
+.video-caption {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+}
+
+/* Sparkle Stars */
+.sparkle-star {
+    position: fixed;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: sparkle-twinkle 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.sparkle-star:nth-child(1) { animation-delay: 0s; }
+.sparkle-star:nth-child(2) { animation-delay: 0.5s; }
+.sparkle-star:nth-child(3) { animation-delay: 1s; }
+.sparkle-star:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* กล่องข้อความ */
+.message-box {
+    text-align: center;
+    padding: 30px;
+    background: rgba(20, 20, 60, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.message-box p {
+    font-size: 1.3rem;
+    margin: 10px 0;
+}
+
+.message-box p:last-child {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #b388ff;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fade-in 0.3s ease;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: zoom-in 0.3s ease;
+}
+
+@keyframes zoom-in {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #b388ff;
+    transform: rotate(90deg);
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+    .heart-shape {
+        width: 500px;
+        height: 480px;
+    }
+    
+    .photo-item {
+        width: 50px;
+        height: 62px;
+    }
+    
+    .video-container {
+        width: 140px;
+    }
+    
+    .play-button {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .message-box p {
+        font-size: 1.1rem;
+    }
+    
+    .message-box p:last-child {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .heart-shape {
+        width: 340px;
+        height: 340px;
+    }
+    
+    .photo-item {
+        width: 32px;
+        height: 40px;
+        border-radius: 2px;
+        padding: 2px;
+        padding-bottom: 8px;
+    }
+    
+    .video-container {
+        width: 100px;
+    }
+    
+    .play-button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .video-caption {
+        font-size: 0.7rem;
+    }
+    
+    .photo-item:hover {
+        transform: scale(1.5) rotate(0deg) !important;
+    }
+    
+    .title {
+        font-size: 1.4rem;
+    }
+    
+    .message-box {
+        padding: 20px;
+    }
+    
+    .message-box p {
+        font-size: 1rem;
+    }
+    
+    .message-box p:last-child {
+        font-size: 1.2rem;
+    }
+    
+    .close-btn {
+        font-size: 2rem;
+        top: 15px;
+        right: 20px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+    .heart-shape {
+        width: 290px;
+        height: 290px;
+    }
+    
+    .photo-item {
+        width: 26px;
+        height: 32px;
+    }
+    
+    .video-container {
+        width: 80px;
+    }
+    
+    .play-button {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+}
